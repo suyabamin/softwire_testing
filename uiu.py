@@ -1,0 +1,31 @@
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service       # for edge
+from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.service import Service       # for chrome
+import time
+
+
+options = webdriver.EdgeOptions()
+options.add_experimental_option("detach", True)
+
+service_obj = Service()
+driver = webdriver.Edge(options=options, service=service_obj)
+
+driver.maximize_window()
+
+# Browser open and access
+driver.get("https://www.uiu.ac.bd")
+
+
+
+driver.find_element(By.LINK_TEXT, "Important Contact").click()
+
+time.sleep(5)  # Delay to ensure that all data is loaded
+
+# Can get all elements of a div
+elements = driver.find_elements(By.CLASS_NAME, "section-wrapper")
+for E in elements:
+    print(E.text)
+
+#assert "Ms. Maher Afrose Khan" in elements[0].text
+    
